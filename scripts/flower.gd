@@ -15,8 +15,7 @@ var unstability = 0
 var heat = 0
 
 func get_stabil(unstability,heat,accel_scalar):
-	print(str(sqrt(abs(accel_scalar))))
-	return unstability - int(sqrt(abs(accel_scalar)) >= 100)*2 - int(abs(heat) >= 2)*1
+	return unstability - int(sqrt(abs(accel_scalar)) >= 10)*2 - int(abs(heat) >= 2)*1
 
 func get_accel(last_vel,vel,delta):
 	return (vel-last_vel)/(delta*10)
@@ -33,3 +32,6 @@ func _process(delta):
 	)
 	last_vel = pv
 	last_pos = parpos
+	print("stability " + str(unstability))
+	if unstability < 0:
+		unstability += 1
